@@ -1,0 +1,44 @@
+SQL> Select * from Sales;
+       PID   QUANTITY      PRICE
+---------- ---------- ----------
+       101         40          1
+       102         50          1
+       105         10          5
+       106         30          2
+       107          5          4
+       108         20          3
+
+Creating a Procedure - 
+
+SQL> create or replace procedure addition 
+  2  is
+  3  A Number (3);
+  4  B Number (3);
+  5  C Number (3);
+  6  Begin
+  7  A:= 15;
+  8  B:= 20;
+  9  C:= A + B;
+ 10  DBMS_output.put_line ('The Result');
+ 11  DBMS_output.put_line (C);
+ 12  end;
+
+
+
+
+
+Procedure for bank2
+
+Create or replace procedure Createbankaccount4(MName char, Mpostcode char, AccType char, City char)
+  2  is
+  3  begin
+  4  insert into bank2 values (Mname,Mpostcode,(select upper(substr(AccType,1,1))||upper(substr(City,1,1))||lpad(nvl(max(substr(AccNo,3,3))+1,1),3,'0') from bank2 where substr(AccNo,1,1)=upper(substr(AccType,1,1))));
+  6* /
+Procedure CREATEBANKACCOUNT4 compiled
+
+
+
+Command for inputting data 
+
+call createbankaccount4('Carl','SN13NE','C','Swindon');
+
